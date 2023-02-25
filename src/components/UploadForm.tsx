@@ -1,6 +1,9 @@
-import { FC, PropsWithChildren, useState } from 'react'
+import { FC, useState } from 'react'
+import ProgressBar from './ProgressBar'
 
-const UploadForm: FC<PropsWithChildren> = () => {
+
+
+const UploadForm: FC = () => {
 
     const [file, setFile] = useState<any | null>(null)
     const [error, setError] = useState<string | null>(null)
@@ -22,9 +25,13 @@ const UploadForm: FC<PropsWithChildren> = () => {
 
     return (
         <form>
-            <input type="file" onChange={changeHandler} />
+            <label htmlFor="">
+                <input type="file" onChange={changeHandler} />
+                <span>+</span>
+            </label>
             {error && <div><>{error}</></div>}
             {file && <div><>{file.name}</></div>}
+            {file && <ProgressBar file={file} setFile={setFile} />}
         </form>
     )
 }

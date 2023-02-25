@@ -4,7 +4,7 @@ import { projectStorage } from '../firebase/config'
 const useStorage = (file: any) => {
     const [progress, setProgress] = useState<number>(0)
     const [error, setError] = useState<null>(null)
-    const [url, setUrl] = useState<null>(null)
+    const [url, setUrl] = useState<null | string>(null)
 
     useEffect(() => {
         // references ссылка на файл внутрки корзины
@@ -17,7 +17,7 @@ const useStorage = (file: any) => {
         }, (err: any) => {
             setError(err);
         }, async () => {
-            const url = await storageRef.getDownLoadURL()
+            const url = await storageRef.getDownloadURL()
             setUrl(url)
         })
     }, [file])
