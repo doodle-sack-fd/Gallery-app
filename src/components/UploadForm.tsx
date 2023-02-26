@@ -25,13 +25,15 @@ const UploadForm: FC = () => {
 
     return (
         <form>
-            <label htmlFor="">
+            <label>
                 <input type="file" onChange={changeHandler} />
                 <span>+</span>
             </label>
-            {error && <div><>{error}</></div>}
-            {file && <div><>{file.name}</></div>}
-            {file && <ProgressBar file={file} setFile={setFile} />}
+            <div className='output'>
+                {error && <div className='error'><>{error}</></div>}
+                {file && <div><>{file.name}</></div>}
+                {file && <ProgressBar file={file} setFile={setFile} />}
+            </div>
         </form>
     )
 }

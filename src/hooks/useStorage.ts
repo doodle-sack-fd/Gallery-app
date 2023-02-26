@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { projectStorage } from '../firebase/config'
+import { projectStorage, projectFirestore, timeStamp } from '../firebase/config'
 
 const useStorage = (file: any) => {
     const [progress, setProgress] = useState<number>(0)
@@ -9,6 +9,7 @@ const useStorage = (file: any) => {
     useEffect(() => {
         // references ссылка на файл внутрки корзины
         const storageRef = projectStorage.ref(file.name)
+        const collectionRef = projectFirestore.collection('images');
 
         storageRef.put(file).on('state_change', (snap: any) => {
             // Progress bar
@@ -18,6 +19,11 @@ const useStorage = (file: any) => {
             setError(err);
         }, async () => {
             const url = await storageRef.getDownloadURL()
+            const createdAt = timeStamp()
+            collectionRef.add({
+                url,
+                createdAt,
+            })
             setUrl(url)
         })
     }, [file])
