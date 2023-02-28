@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 interface IProgressBarProp {
     setFile: any,
-        file: any;
+    file: any;
 }
 
 const ProgressBar: FC<IProgressBarProp> = ({ file, setFile }) => {
@@ -17,7 +17,7 @@ const ProgressBar: FC<IProgressBarProp> = ({ file, setFile }) => {
     }, [url, setFile])
 
     return (
-        <motion.div className='progress-bar' initial={{width: 1}} animate={{width: progress + '%'}}>
+        <motion.div className='progress-bar' initial={{ width: 1 }} animate={{ width: progress + '%' }}>
             progress
         </motion.div>
     )

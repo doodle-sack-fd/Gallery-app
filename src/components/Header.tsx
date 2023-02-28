@@ -1,8 +1,6 @@
 import React, { FC } from 'react'
 
 const Header: FC = () => {
-
-
     return (
         <div className="title">
             <h1>PhotoGallery</h1>

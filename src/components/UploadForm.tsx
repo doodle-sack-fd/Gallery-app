@@ -1,8 +1,6 @@
 import { FC, useState } from 'react'
 import ProgressBar from './ProgressBar'
 
-
-
 const UploadForm: FC = () => {
 
     const [file, setFile] = useState<any | null>(null)
